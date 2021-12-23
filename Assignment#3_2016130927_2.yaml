@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: my-ns
+spec: {}
+status: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  namespace: my-ns
+  labels:
+    run: printenv
+  name: printenv
+spec:
+  containers:
+  - image: ubuntu:latest
+    name: printenv
+    command: ["printenv"]
+    args: ["HOSTNAME", "KUBERNETES_PORT"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
